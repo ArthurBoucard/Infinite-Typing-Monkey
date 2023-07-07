@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <MonkeyComponent /> <!-- Updated component name -->
+    <MonkeyComponent />
     <TextGenerator />
   </div>
 </template>
 
 <script>
-import MonkeyComponent from './components/Monkey.vue'; // Updated import statement
+import MonkeyComponent from './components/Monkey.vue';
 import TextGenerator from './components/TextGenerator.vue';
 
 export default {
   name: 'App',
   components: {
-    MonkeyComponent, // Updated component name
+    MonkeyComponent,
     TextGenerator
   }
 };

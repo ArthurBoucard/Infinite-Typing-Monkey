@@ -6,7 +6,7 @@
   
   <script>
   export default {
-    name: 'MonkeyComponent' // Updated component name
+    name: 'MonkeyComponent'
   };
   </script>
   
