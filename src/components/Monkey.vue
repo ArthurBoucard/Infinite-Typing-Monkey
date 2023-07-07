@@ -1,6 +1,6 @@
 <template>
     <div class="monkey">
-      <!-- Monkey image or animation goes here -->
+        <img src="../assets/monkey.gif" alt="Monkey" />
     </div>
   </template>
   

@@ -19,5 +19,10 @@ export default {
 </script>
 
 <style>
-/* App styles go here */
+body, html, #app {
+  margin: 0;
+  padding: 0;
+  background-color: #ffcc99;
+  height: 100%;
+}
 </style>
