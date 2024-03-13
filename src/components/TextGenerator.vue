@@ -27,9 +27,9 @@
     const text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -.,;:!?()';
     return Array.from({ length: 10 }, () => text[Math.floor(Math.random() * text.length)]).join('');
   }
-  </script>
-  
-  <style scoped>
+</script>
+
+<style scoped>
   .text-generator {
     /* Text generator styles go here */
   }
@@ -37,5 +37,5 @@
   .text-area {
     /* Text area styles go here */
   }
-  </style>
+</style>
   
