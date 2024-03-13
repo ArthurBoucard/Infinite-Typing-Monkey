@@ -30,12 +30,10 @@
 </script>
 
 <style scoped>
-  .text-generator {
-    /* Text generator styles go here */
+  /* .text-generator {
   }
   
   .text-area {
-    /* Text area styles go here */
-  }
+  } */
 </style>
   
