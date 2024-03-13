@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <MonkeyComponent />
+    <SimpleKeyboard />
     <TextGenerator />
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import MonkeyComponent from './components/Monkey.vue';
 import TextGenerator from './components/TextGenerator.vue';
+import SimpleKeyboard from './components/Keyboard.vue';
 
 export default {
   name: 'App',
   components: {
     MonkeyComponent,
-    TextGenerator
+    TextGenerator,
+    SimpleKeyboard
   }
 };
 </script>
@@ -25,4 +28,4 @@ body, html, #app {
   background-color: #ffcc99;
   height: 100%;
 }
-</style>
+</style>./components/SimpleKeyboard.vue
