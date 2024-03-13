@@ -12,8 +12,7 @@
       @input="onInputChange"
       placeholder="Tap on the virtual keyboard to start"
     ></textarea>
-    <TextGenerator /> 
-    <!-- TODO: Link textgenrator text to keyboard input -->
+    <TextGenerator @textGenerated="setText"/>
   </div>
 </template>
 
@@ -21,6 +20,7 @@
 import MonkeyComponent from './components/Monkey.vue';
 import TextGenerator from './components/TextGenerator.vue';
 import SimpleKeyboard from './components/Keyboard.vue';
+import { eventBus } from './main';
 
 export default {
   name: 'App',
@@ -31,7 +31,13 @@ export default {
   },
   data: () => ({
     input: "",
+    generatedText: ""
   }),
+  mounted() {
+    eventBus.$on('textGenerated', (text) => {
+      this.generatedText = text;
+    });
+  },
   methods: {
     onChange(input) {
       this.input = input;
@@ -42,6 +48,9 @@ export default {
     onInputChange(input) {
       this.input = input.target.value;
     },
+    setText(text) {
+      this.generatedText = text;
+    }
   },
 };
 </script>

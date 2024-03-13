@@ -15,10 +15,17 @@
       };
     },
     mounted() {
-      // Generate and update text at regular intervals
-      setInterval(() => {
+      this.generateText(); // Initial text generation
+      this.interval = setInterval(this.generateText, 500); // Start text generation interval
+    },
+    beforeUnmount() {
+      clearInterval(this.interval); // Clear interval to prevent memory leaks
+    },
+    methods: {
+      generateText() {
         this.generatedText += getRandomText();
-      }, 500);
+        this.$emit('textGenerated', this.generatedText); // Emit event to parent component
+      }
     }
   };
   
