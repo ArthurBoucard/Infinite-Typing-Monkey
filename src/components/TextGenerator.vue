@@ -1,12 +1,12 @@
 <template>
-    <div class="text-generator">
-      <div class="text-area">
-        <p>{{ generatedText }}</p>
-      </div>
+  <div class="text-generator">
+    <div class="text-area">
+      <p>{{ generatedText }}</p>
     </div>
-  </template>
+  </div>
+</template>
   
-  <script>
+<script>
   export default {
     name: 'TextGenerator',
     data() {
