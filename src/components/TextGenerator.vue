@@ -32,7 +32,7 @@
   function getRandomText() {
     // Generate and return random text (you can customize this function)
     const text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -.,;:!?()';
-    return Array.from({ length: 10 }, () => text[Math.floor(Math.random() * text.length)]).join('');
+    return Array.from({ length: 1 }, () => text[Math.floor(Math.random() * text.length)]).join('');
   }
 </script>
 

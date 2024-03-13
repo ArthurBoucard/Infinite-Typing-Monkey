@@ -4,7 +4,7 @@
     <SimpleKeyboard
       @onChange="onChange"
       @onKeyPress="onKeyPress"
-      :input="input"
+      :input="generatedText"
     />
     <textarea
       :value="input"
