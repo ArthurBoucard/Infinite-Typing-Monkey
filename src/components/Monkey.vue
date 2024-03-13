@@ -1,10 +1,10 @@
 <template>
-    <div class="monkey">
-        <img src="../assets/monkey.gif" alt="Monkey" />
-    </div>
-  </template>
-  
-  <script>
+  <div class="monkey">
+    <img src="../assets/monkey.gif" alt="Monkey" />
+  </div>
+</template>
+
+<script>
   export default {
     name: 'MonkeyComponent'
   };
