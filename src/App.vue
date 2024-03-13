@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <MonkeyComponent />
-    <SimpleKeyboard />
-    <TextGenerator />
+    <SimpleKeyboard
+      @onChange="onChange"
+      @onKeyPress="onKeyPress"
+      :input="input"
+    />
+    <textarea
+      :value="input"
+      class="input"
+      @input="onInputChange"
+      placeholder="Tap on the virtual keyboard to start"
+    ></textarea>
+    <TextGenerator /> 
+    <!-- TODO: Link textgenrator text to keyboard input -->
   </div>
 </template>
 
@@ -17,7 +28,21 @@ export default {
     MonkeyComponent,
     TextGenerator,
     SimpleKeyboard
-  }
+  },
+  data: () => ({
+    input: "",
+  }),
+  methods: {
+    onChange(input) {
+      this.input = input;
+    },
+    onKeyPress(button) {
+      console.log("button", button);
+    },
+    onInputChange(input) {
+      this.input = input.target.value;
+    },
+  },
 };
 </script>
 
