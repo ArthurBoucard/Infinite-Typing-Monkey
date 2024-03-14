@@ -11,7 +11,9 @@
       @onChange="onChange"
       :input="generatedText"
     /> -->
-    <TextGenerator @textGenerated="setText"/>
+    <div class="generatedText">
+      <TextGenerator @textGenerated="setText"/>
+    </div>
   </div>
 </template>
 
@@ -63,12 +65,16 @@ body, html, #app {
 }
 
 .image {
-  width: 150px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 20px; /* Adjust spacing between image and text */
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
 }
 
 .content {
-  flex: 1; /* Take up remaining space */
+  flex: 1;
+}
+
+.generatedText {
+  margin: 20px
 }
 </style>./components/SimpleKeyboard.vue
