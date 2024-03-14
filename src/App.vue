@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <MonkeyComponent />
+    <div class="monkey">
+      <img src="./assets/monkey.gif" alt="Monkey" />
+    </div>
     <!-- <SimpleKeyboard
       @onChange="onChange"
       :input="generatedText"
@@ -10,7 +12,6 @@
 </template>
 
 <script>
-import MonkeyComponent from './components/Monkey.vue';
 import TextGenerator from './components/TextGenerator.vue';
 // import SimpleKeyboard from './components/Keyboard.vue';
 import { eventBus } from './main';
@@ -18,7 +19,6 @@ import { eventBus } from './main';
 export default {
   name: 'App',
   components: {
-    MonkeyComponent,
     TextGenerator,
     // SimpleKeyboard
   },
