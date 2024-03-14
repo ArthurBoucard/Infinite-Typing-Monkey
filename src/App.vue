@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <MonkeyComponent />
-    <SimpleKeyboard
+    <!-- <SimpleKeyboard
       @onChange="onChange"
       :input="generatedText"
-    />
+    /> -->
     <TextGenerator @textGenerated="setText"/>
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 import MonkeyComponent from './components/Monkey.vue';
 import TextGenerator from './components/TextGenerator.vue';
-import SimpleKeyboard from './components/Keyboard.vue';
+// import SimpleKeyboard from './components/Keyboard.vue';
 import { eventBus } from './main';
 
 export default {
@@ -20,7 +20,7 @@ export default {
   components: {
     MonkeyComponent,
     TextGenerator,
-    SimpleKeyboard
+    // SimpleKeyboard
   },
   data: () => ({
     input: "",
