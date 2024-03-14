@@ -3,15 +3,8 @@
     <MonkeyComponent />
     <SimpleKeyboard
       @onChange="onChange"
-      @onKeyPress="onKeyPress"
       :input="generatedText"
     />
-    <textarea
-      :value="input"
-      class="input"
-      @input="onInputChange"
-      placeholder="Tap on the virtual keyboard to start"
-    ></textarea>
     <TextGenerator @textGenerated="setText"/>
   </div>
 </template>
@@ -39,14 +32,11 @@ export default {
     });
   },
   methods: {
-    onChange(input) {
-      this.input = input;
+    onChange(generatedText) {
+      this.input = generatedText.slice(-1);
     },
-    onKeyPress(button) {
-      console.log("button", button);
-    },
-    onInputChange(input) {
-      this.input = input.target.value;
+    onInputChange(generatedText) {
+      this.input = generatedText.slice(-1);
     },
     setText(text) {
       this.generatedText = text;

@@ -29,12 +29,9 @@ import "simple-keyboard/build/css/index.css";
   mounted() {
     let commonKeyboardOptions = {
       onChange: input => this.onChange(input),
-      onKeyPress: button => this.onKeyPress(button),
+      // onKeyPress: button => this.onKeyPress(button),
       newLineOnEnter: true,
       theme: "simple-keyboard hg-theme-default hg-layout-default",
-      physicalKeyboardHighlight: true,
-      syncInstanceInputs: true,
-      mergeDisplay: true,
       debug: true
     };
     this.keyboard = new Keyboard(".simple-keyboard-main", {
@@ -52,7 +49,6 @@ import "simple-keyboard/build/css/index.css";
           "{space}"
         ],
         shift: [
-          "{escape} {f1} {f2} {f3} {f4} {f5} {f6} {f7} {f8} {f9} {f10} {f11} {f12}",
           "~ ! @ # $ % ^ & * ( ) _ + {backspace}",
           "{tab} Q W E R T Y U I O P { } |",
           '{capslock} A S D F G H J K L : " {enter}',
@@ -70,31 +66,33 @@ import "simple-keyboard/build/css/index.css";
         "{shiftright}": "shift ⇧"
       }
     });
+    this.keyboard.setInput(this.input);
   },
   methods: {
     onChange(input) {
       this.$emit("onChange", input);
+      this.$emit("onKeyPress", input.slice(-1));
     },
-    onKeyPress(button) {
-      this.$emit("onKeyPress", button);
-      /**
-       * If you want to handle the shift and caps lock buttons
-       */
-      if (
-        button === "{shift}" ||
-        button === "{shiftleft}" ||
-        button === "{shiftright}" ||
-        button === "{capslock}"
-      )
-        this.handleShift();
-    },
-    handleShift() {
-      let currentLayout = this.keyboard.options.layoutName;
-      let shiftToggle = currentLayout === "default" ? "shift" : "default";
-      this.keyboard.setOptions({
-        layoutName: shiftToggle
-      });
-    }
+    // onKeyPress(button) {
+    //   this.$emit("onKeyPress", button);
+    //   /**
+    //    * If you want to handle the shift and caps lock buttons
+    //    */
+    //   if (
+    //     button === "{shift}" ||
+    //     button === "{shiftleft}" ||
+    //     button === "{shiftright}" ||
+    //     button === "{capslock}"
+    //   )
+    //     this.handleShift();
+    // },
+    // handleShift() {
+    //   let currentLayout = this.keyboard.options.layoutName;
+    //   let shiftToggle = currentLayout === "default" ? "shift" : "default";
+    //   this.keyboard.setOptions({
+    //     layoutName: shiftToggle
+    //   });
+    // }
   },
   watch: {
     input(input) {
