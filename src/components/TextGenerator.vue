@@ -31,7 +31,8 @@
   
   function getRandomText() {
     // Generate and return random text (you can customize this function)
-    const text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 -.,;:!?()';
+    // const text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789      -.,;:!?()';
+    const text = 'abcdefghijklmnopqrstuvwxyz     ';
     return Array.from({ length: 1 }, () => text[Math.floor(Math.random() * text.length)]).join('');
   }
 </script>
