@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <div class="monkey">
-      <img src="./assets/monkey.gif" alt="Monkey" />
+    <div class="header">
+      <img src="./assets/monkey.gif" alt="Monkey" class="image" />
+      <div class="content">
+        <h1>Infinite Typing Monkey</h1>
+        <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
+      </div>
     </div>
     <!-- <SimpleKeyboard
       @onChange="onChange"
@@ -51,5 +55,20 @@ body, html, #app {
   padding: 0;
   background-color: #ffcc99;
   height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 150px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 20px; /* Adjust spacing between image and text */
+}
+
+.content {
+  flex: 1; /* Take up remaining space */
 }
 </style>./components/SimpleKeyboard.vue
