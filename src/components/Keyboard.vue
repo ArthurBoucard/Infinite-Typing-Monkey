@@ -32,7 +32,10 @@ import "simple-keyboard/build/css/index.css";
       // onKeyPress: button => this.onKeyPress(button),
       newLineOnEnter: true,
       theme: "simple-keyboard hg-theme-default hg-layout-default",
-      debug: true
+      // physicalKeyboardHighlight: true,
+      // syncInstanceInputs: true,
+      // mergeDisplay: true,
+      // debug: true
     };
     this.keyboard = new Keyboard(".simple-keyboard-main", {
       ...commonKeyboardOptions,
