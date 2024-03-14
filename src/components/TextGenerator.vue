@@ -16,7 +16,7 @@
     },
     mounted() {
       this.generateText(); // Initial text generation
-      this.interval = setInterval(this.generateText, 500); // Start text generation interval
+      this.interval = setInterval(this.generateText, 50); // Start text generation interval
     },
     beforeUnmount() {
       clearInterval(this.interval); // Clear interval to prevent memory leaks
