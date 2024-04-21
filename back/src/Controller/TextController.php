@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TextController extends AbstractController
 {
-    #[Route('/text', name: 'add_text')]
+    #[Route('/text', name: 'add_text', methods: ['POST'])]
     public function addText(EntityManagerInterface $em, Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
@@ -33,8 +33,25 @@ class TextController extends AbstractController
             'message' => 'Text added',
         ], 201);
     }
+    #[Route('/text', name: 'get_all_text', methods: ['GET'])]
+    public function getAllText(EntityManagerInterface $em): JsonResponse
+    {
+        $texts = $em->getRepository(BasicText::class)->findAll();
 
-    #[Route('/text/{id}', name: 'get_text')]
+        $data = [];
+
+        foreach ($texts as $text) {
+            $data[] = [
+                'id' => $text->getId(),
+                'content' => $text->getContent(),
+                'timestamp' => $text->getTimestamp(),
+            ];
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/text/{id}', name: 'get_text', methods: ['GET'])]
     public function getText(EntityManagerInterface $em, int $id): JsonResponse
     {
         $text = $em->getRepository(BasicText::class)->find($id);
