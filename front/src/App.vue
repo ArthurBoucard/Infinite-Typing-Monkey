@@ -75,6 +75,8 @@ body, html, #app {
 }
 
 .generatedText {
-  margin: 20px
+  margin: 20px;
+  width: 98%;
+  word-break: break-word;
 }
 </style>./components/SimpleKeyboard.vue
