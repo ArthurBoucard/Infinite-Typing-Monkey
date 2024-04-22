@@ -7,6 +7,8 @@
 </template>
   
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'TextGenerator',
     data() {
@@ -27,6 +29,18 @@
         this.generatedText += getRandomText();
         this.$emit('textGenerated', this.generatedText);
         this.generatedTextPreview = this.generatedText.slice(-10);
+
+        if (this.generatedText.length % 255 === 0) {
+          axios.post('http://127.0.0.1:8000/text', {
+            content: this.generatedText.slice(-255)
+          })
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
       }
     }
   };
