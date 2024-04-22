@@ -1,20 +1,23 @@
 <template>
   <div id="app">
     <div class="header">
-      <img src="./assets/monkey.gif" alt="Monkey" class="image" />
+      <img src="./assets/monkey.gif" alt="Monkey" class="gif-monkey" />
       <div class="content">
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
+        <div class="preview">
+          <h3>Live typing :</h3>
+          <img src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
+          <TextGenerator class="TextGenerator" @textGenerated="setText"/>
+        </div>
       </div>
     </div>
+    <div class="divider"></div>
     <!-- <SimpleKeyboard
       @onChange="onChange"
       :input="generatedText"
     /> -->
     <div class="generatedText">
-      <div class="preview">
-        <TextGenerator @textGenerated="setText"/>
-      </div>
       <p>{{ storedText }}{{ generatedText }}</p>
     </div>
   </div>
@@ -65,25 +68,54 @@ body, html, #app {
   padding: 0;
   background-color: #ffcc99;
   height: 100%;
+  font-size: 1.8vh;
 }
+
+.divider {
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 1vh;
+    height: 2px;
+    background-color: #000;
+}
+
 
 .header {
   display: flex;
   align-items: center;
 }
 
-.image {
-  width: 150px;
+.gif-monkey {
+  width: 30vh;
   height: auto;
-  margin-right: 20px;
+  margin-right: 2vh;
 }
 
 .content {
   flex: 1;
 }
 
+.preview {
+  margin-top: 5vh;
+  position: relative;
+}
+
+.png-typewriter {
+  width: 13%;
+  margin-right: 2vh;
+  margin-left: 4vh;
+  /* position: absolute; */
+}
+
+.TextGenerator {
+  top: 28%;
+  left: 6%;
+  /* transform: translate(-50%, -50%); */
+  position: absolute;
+}
+
 .generatedText {
-  margin: 20px;
+  margin: 2vh;
   width: 98%;
   word-break: break-word;
 }
