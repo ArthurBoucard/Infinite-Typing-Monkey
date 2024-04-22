@@ -12,55 +12,47 @@
       :input="generatedText"
     /> -->
     <div class="generatedText">
-      <!-- <TextGenerator @textGenerated="setText"/> -->
-      <p>{{ generatedText }}</p>
+      <div class="preview">
+        <TextGenerator @textGenerated="setText"/>
+      </div>
+      <p>{{ storedText }}{{ generatedText }}</p>
     </div>
   </div>
 </template>
 
 <script>
-// import TextGenerator from './components/TextGenerator.vue';
+import TextGenerator from './components/TextGenerator.vue';
 // import SimpleKeyboard from './components/Keyboard.vue';
 import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    // TextGenerator,
+    TextGenerator,
     // SimpleKeyboard
   },
   data: () => ({
     input: "",
-    generatedText: ""
+    generatedText: "",
+    storedText: "",
   }),
   mounted() {
     let apiText = '';
     axios.get('http://127.0.0.1:8000/text')
-        .then((response) => {
-          response.data.forEach(element => {
-            apiText += element.content
-          });
-        })
-        .catch((error) => {
-          console.error(error);
+      .then((response) => {
+        response.data.forEach(element => {
+          apiText += element.content
         });
+        console.log(apiText);
+        this.storedText = apiText;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
-    // this.generatedText = apiText;
-    this.displayText(apiText);
-
+    this.interval = setInterval(this.generateText, 10);
   },
   methods: {
-    displayText(apiText) {
-      for (let i = 0; i < length(apiText); i++) {
-        this.generatedText += apiText[i];
-      }
-    },
-    onChange(generatedText) {
-      this.input = generatedText.slice(-1);
-    },
-    onInputChange(generatedText) {
-      this.input = generatedText.slice(-1);
-    },
     setText(text) {
       this.generatedText = text;
     }

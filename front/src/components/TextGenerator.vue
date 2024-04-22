@@ -1,7 +1,7 @@
 <template>
   <div class="text-generator">
     <div class="text-area">
-      <p>{{ generatedText }}</p>
+      <p>{{ generatedTextPreview }}</p>
     </div>
   </div>
 </template>
@@ -11,7 +11,8 @@
     name: 'TextGenerator',
     data() {
       return {
-        generatedText: ''
+        generatedText: '',
+        generatedTextPreview: '',
       };
     },
     mounted() {
@@ -25,12 +26,12 @@
       generateText() {
         this.generatedText += getRandomText();
         this.$emit('textGenerated', this.generatedText);
+        this.generatedTextPreview = this.generatedText.slice(-10);
       }
     }
   };
   
   function getRandomText() {
-    // Generate and return random text (you can customize this function)
     // const text = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789      -.,;:!?()';
     const text = 'abcdefghijklmnopqrstuvwxyz';
     return Array.from({ length: 1 }, () => text[Math.floor(Math.random() * text.length)]).join('');
