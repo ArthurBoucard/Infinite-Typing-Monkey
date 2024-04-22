@@ -12,20 +12,21 @@
       :input="generatedText"
     /> -->
     <div class="generatedText">
-      <TextGenerator @textGenerated="setText"/>
+      <!-- <TextGenerator @textGenerated="setText"/> -->
+      <p>{{ generatedText }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import TextGenerator from './components/TextGenerator.vue';
+// import TextGenerator from './components/TextGenerator.vue';
 // import SimpleKeyboard from './components/Keyboard.vue';
-import { eventBus } from './main';
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    TextGenerator,
+    // TextGenerator,
     // SimpleKeyboard
   },
   data: () => ({
@@ -33,11 +34,27 @@ export default {
     generatedText: ""
   }),
   mounted() {
-    eventBus.$on('textGenerated', (text) => {
-      this.generatedText = text;
-    });
+    let apiText = '';
+    axios.get('http://127.0.0.1:8000/text')
+        .then((response) => {
+          response.data.forEach(element => {
+            apiText += element.content
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+    // this.generatedText = apiText;
+    this.displayText(apiText);
+
   },
   methods: {
+    displayText(apiText) {
+      for (let i = 0; i < length(apiText); i++) {
+        this.generatedText += apiText[i];
+      }
+    },
     onChange(generatedText) {
       this.input = generatedText.slice(-1);
     },
