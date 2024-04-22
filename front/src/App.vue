@@ -43,7 +43,6 @@ export default {
         response.data.forEach(element => {
           apiText += element.content
         });
-        console.log(apiText);
         this.storedText = apiText;
       })
       .catch((error) => {

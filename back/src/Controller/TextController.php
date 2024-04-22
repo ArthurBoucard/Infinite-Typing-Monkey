@@ -67,4 +67,22 @@ class TextController extends AbstractController
             'timestamp' => $text->getTimestamp(),
         ]);
     }
+
+    #[Route('stats/text', name: 'get_text_stats', methods: ['GET'])]
+    public function getTextStats(EntityManagerInterface $em): JsonResponse
+    {
+        $texts = $em->getRepository(BasicText::class)->findAll();
+
+        $total = count($texts);
+        $totalLength = 0;
+
+        foreach ($texts as $text) {
+            $totalLength += strlen($text->getContent());
+        }
+
+        return $this->json([
+            'total_length' => $totalLength,
+            'total_time_sec' => $total * 3, // rounded 2.55 to write 255 characters
+        ]);
+    }
 }
