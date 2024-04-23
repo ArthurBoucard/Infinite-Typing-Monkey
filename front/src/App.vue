@@ -5,10 +5,16 @@
       <div class="content">
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
-        <div class="preview">
-          <h3 ref="liveTyping" @click="startBottomScroll">🔎 Go to live typing :</h3>
-          <img  @click="startBottomScroll" src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
-          <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
+        <div class="column-flex">
+          <div class="preview">
+            <h3 ref="liveTyping" @click="startBottomScroll">⌨️ Go to live typing :</h3>
+            <img  @click="startBottomScroll" src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
+            <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
+          </div>
+          <div class="search">
+            <h3>🔍 Search for a word :</h3>
+            <input type="text" v-model="input" placeholder="Search for a word" />
+          </div>
         </div>
       </div>
     </div>
@@ -121,25 +127,42 @@ body, html, #app {
   flex: 1;
 }
 
+.column-flex {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3vh;
+}
+
 .preview {
-  margin-top: 5vh;
   position: relative;
+  flex-basis: 30vh;
+  /* display: flex; */
 }
 
 .preview:hover {
   cursor: pointer;
 }
 
+.search {
+  margin-left: 5vh;
+}
+
+.search input {
+  margin-left: 4vh;
+  width: 20vh;
+  height: 2.2vh;
+}
+
 .png-typewriter {
-  width: 13%;
-  margin-right: 2vh;
+  width: 80%;
+  margin-right: 1vh;
   margin-left: 4vh;
   /* position: absolute; */
 }
 
 .TextGenerator {
   top: 28%;
-  left: 6%;
+  left: 36%;
   /* transform: translate(-50%, -50%); */
   position: absolute;
 }
