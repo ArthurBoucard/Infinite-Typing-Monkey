@@ -49,6 +49,7 @@ export default {
         response.data.forEach(element => {
           apiText += element.content
         });
+
         this.storedText = apiText;
       })
       .catch((error) => {
@@ -92,6 +93,7 @@ body, html, #app {
   background-color: #ffcc99;
   height: 100%;
   font-size: 1.8vh;
+  font-family: monospace;
 }
 
 .divider {
@@ -140,6 +142,7 @@ body, html, #app {
 .generatedText {
   margin: 2vh;
   width: 98%;
-  word-break: break-word;
+  word-break: break-all;
+  /* overflow-wrap: break-word; */
 }
 </style>
