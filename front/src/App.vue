@@ -6,7 +6,7 @@
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
         <div class="preview">
-          <h3>Live typing :</h3>
+          <h3 ref="liveTyping" @click="startBottomScroll">Live typing :</h3>
           <img src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
           <TextGenerator class="TextGenerator" @textGenerated="setText"/>
         </div>
@@ -38,6 +38,9 @@ export default {
     input: "",
     generatedText: "",
     storedText: "",
+    autoScrollInterval: null,
+    lastScrollTop: 0,
+    scrollingDown: false
   }),
   mounted() {
     let apiText = '';
@@ -51,12 +54,32 @@ export default {
       .catch((error) => {
         console.error(error);
       });
-
-    this.interval = setInterval(this.generateText, 10);
+    window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
     setText(text) {
       this.generatedText = text;
+    },
+    startBottomScroll() {
+      this.autoScrollInterval = setInterval(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 100);
+    },
+    handleScroll() {
+      let st = document.documentElement.scrollTop;
+      if (st > this.lastScrollTop) {
+        this.scrollingDown = true;
+      } else {
+        this.scrollingDown = false;
+      }
+      this.lastScrollTop = st <= 0 ? 0 : st;
+      if (!this.scrollingDown) {
+        clearInterval(this.autoScrollInterval);
+      }
+    },
+    destroyed() {
+      clearInterval(this.autoScrollInterval);
+      window.removeEventListener('scroll', this.handleScroll);
     }
   },
 };
@@ -119,4 +142,4 @@ body, html, #app {
   width: 98%;
   word-break: break-word;
 }
-</style>./components/SimpleKeyboard.vue
+</style>
