@@ -6,7 +6,7 @@
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
         <div class="preview">
-          <h3 ref="liveTyping" @click="startBottomScroll">Live typing :</h3>
+          <h3 ref="liveTyping" @click="startBottomScroll">🔎 Live typing :</h3>
           <img src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
           <TextGenerator class="TextGenerator" @textGenerated="setText"/>
         </div>
@@ -49,6 +49,7 @@ export default {
         response.data.forEach(element => {
           apiText += element.content
         });
+        apiText = apiText.match(/.{1,205}/g).join('\n');
 
         this.storedText = apiText;
       })
@@ -141,8 +142,9 @@ body, html, #app {
 
 .generatedText {
   margin: 2vh;
-  width: 98%;
+  width: 203vh;
   word-break: break-all;
-  /* overflow-wrap: break-word; */
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 </style>
