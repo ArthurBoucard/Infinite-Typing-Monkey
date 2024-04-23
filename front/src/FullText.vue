@@ -1,23 +1,26 @@
 <template>
-    <div id="fulltext">
-      <div class="header">
-        <img src="./assets/monkey.gif" alt="Monkey" class="gif-monkey" />
-        <div class="content">
-          <h1>Infinite Typing Monkey</h1>
-          <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
-          <div class="column-flex">
-            <div class="search">
-              <h3>🔍 Search for a word :</h3>
-              <input type="text" v-model="input" placeholder="Search for a word" />
-            </div>
+  <div id="fulltext">
+    <div class="header">
+      <img src="./assets/monkey.gif" alt="Monkey" class="gif-monkey" />
+      <div class="content">
+        <h1>Infinite Typing Monkey</h1>
+        <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
+        <div class="column-flex">
+          <div class="search">
+            <h3>🔍 Search for a word :</h3>
+            <input type="text" v-model="input" placeholder="Search for a word" />
+          </div>
+          <div class="router">
+            <h3><RouterLink to="/">⌨️ Go to live typing</RouterLink></h3>
           </div>
         </div>
       </div>
-      <div class="divider"></div>
-      <div class="storedText">
-        <p>{{ storedText }}</p>
-      </div>
     </div>
+    <div class="divider"></div>
+    <div class="storedText">
+      <p>{{ storedText }}</p>
+    </div>
+  </div>
 </template>
   
 <script>
@@ -92,6 +95,10 @@
   }
   
   .search {
+    margin-left: 5vh;
+  }
+
+  .router {
     margin-left: 5vh;
   }
   
