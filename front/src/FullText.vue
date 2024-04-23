@@ -6,10 +6,7 @@
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
         <div class="column-flex">
-          <div class="search">
-            <h3>🔍 Search for a word :</h3>
-            <input type="text" v-model="input" placeholder="Search for a word" />
-          </div>
+          <WordSearcher />
           <div class="router">
             <h3><RouterLink to="/">⌨️ Go to live typing</RouterLink></h3>
           </div>
@@ -24,11 +21,13 @@
 </template>
   
 <script>
+import WordSearcher from './components/WordSearcher.vue';
   import axios from 'axios';
   
   export default {
     name: 'FullText',
     components: {
+      WordSearcher,
     },
     data: () => ({
       input: "",
@@ -93,19 +92,9 @@
     flex-direction: row;
     margin-top: 3vh;
   }
-  
-  .search {
-    margin-left: 5vh;
-  }
 
   .router {
     margin-left: 5vh;
-  }
-  
-  .search input {
-    margin-left: 4vh;
-    width: 20vh;
-    height: 2.2vh;
   }
   
   .storedText {

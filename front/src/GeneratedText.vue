@@ -11,10 +11,7 @@
             <img  @click="startBottomScroll" src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
             <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
           </div>
-          <div class="search">
-            <h3>🔍 Search for a word :</h3>
-            <input type="text" v-model="input" placeholder="Search for a word" />
-          </div>
+          <WordSearcher />
           <div class="router">
             <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
           </div>
@@ -35,11 +32,13 @@
 <script>
 import TextGenerator from './components/TextGenerator.vue';
 // import SimpleKeyboard from './components/Keyboard.vue';
+import WordSearcher from './components/WordSearcher.vue';
 
 export default {
   name: 'generatedText',
   components: {
     TextGenerator,
+    WordSearcher,
     // SimpleKeyboard
   },
   data: () => ({
@@ -129,16 +128,6 @@ export default {
 
   .preview:hover {
     cursor: pointer;
-  }
-
-  .search {
-    margin-left: 5vh;
-  }
-
-  .search input {
-    margin-left: 4vh;
-    width: 20vh;
-    height: 2.2vh;
   }
 
   .router {
