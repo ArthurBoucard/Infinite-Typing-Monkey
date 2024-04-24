@@ -27,7 +27,6 @@
       wordPositions() {
         const pos = [];
         let index = this.initialText.indexOf(this.searchQuery);
-        pos.push(index);
 
         while (index !== -1) {
           pos.push(index);
