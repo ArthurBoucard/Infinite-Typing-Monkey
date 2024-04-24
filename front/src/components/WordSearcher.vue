@@ -62,6 +62,7 @@
   margin-left: 4vh;
   width: 20vh;
   height: 2.2vh;
+  font-size: 1.5vh;
 }
 </style>
   

@@ -2,6 +2,16 @@
   <div id="fulltext">
     <div class="header">
       <img src="./assets/monkey.gif" alt="Monkey" class="gif-monkey" />
+      <div  v-if="isModalVisible" class="modal-mask">
+        <div class="modal">
+          <h3>🐒 Go to word</h3>
+          <div class="column-flex">
+            <img src="./assets/arrow-up.svg" alt="arrow-up" class="arrow" @click="arrowUp" />
+            <p>{{ wordNumber }}</p>
+            <img src="./assets/arrow-down.svg" alt="arrow-down" class="arrow" @click="arrowDown" />
+          </div>
+        </div>
+      </div>
       <div class="content">
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
@@ -39,7 +49,9 @@ import WordSearcher from './components/WordSearcher.vue';
       storedText: "",
       searchQuery: '',
       wordPos: [],
-      boldText: ''
+      boldText: '',
+      isModalVisible: false,
+      wordNumber: 0,
     }),
     mounted() {
       let apiText = '';
@@ -64,6 +76,11 @@ import WordSearcher from './components/WordSearcher.vue';
       wordPositions(pos) {
         this.wordPos = pos;
         this.formattedText();
+        if (this.wordPos.length > 0) {
+          this.isModalVisible = true;
+        } else {
+          this.isModalVisible = false;
+        }
       },
       formattedText() {
         const textArray = this.storedText.split('');
@@ -76,7 +93,28 @@ import WordSearcher from './components/WordSearcher.vue';
           }
         }
         this.boldText = textArray.join('');
-      }
+      },
+      arrowUp() {
+        let word = document.getElementById('none');
+
+        if (this.wordNumber > 1) {
+          this.wordNumber--;
+          word = document.getElementById('word-' + this.wordNumber);
+          word.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          this.wordNumber--;  
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      },
+      arrowDown() {
+        let word = document.getElementById('none');
+
+        if (this.wordNumber < this.wordPos.length) {
+          this.wordNumber++;
+          word = document.getElementById('word-' + this.wordNumber);
+          word.scrollIntoView({ behavior: 'smooth' });
+        }
+      },
     },
   };
 </script>
@@ -131,5 +169,45 @@ import WordSearcher from './components/WordSearcher.vue';
     overflow-wrap: break-word;
     white-space: pre-wrap;
   }
-  </style>
+
+  .modal-mask {
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+
+  .modal {
+    position: fixed;
+    top: 2vh;
+    right: 2vh;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: auto;
+    z-index: 101;
+  }
+
+  .modal h3 {
+    margin: 1vh;
+  }
+
+  .arrow {
+    width: 2vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+  }
+  
+  .arrow:hover {
+    cursor: pointer;
+  }
+
+</style>
   
