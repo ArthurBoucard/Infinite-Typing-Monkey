@@ -20,7 +20,7 @@
     </div>
     <div class="divider"></div>
     <div class="storedText">
-      <p>{{ storedText }}</p>
+      <p v-html="wordPos.length > 0 ? this.boldText : this.storedText"></p>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@ import WordSearcher from './components/WordSearcher.vue';
       storedText: "",
       searchQuery: '',
       wordPos: [],
+      boldText: ''
     }),
     mounted() {
       let apiText = '';
@@ -61,8 +62,19 @@ import WordSearcher from './components/WordSearcher.vue';
         this.searchQuery = newQuery;
       },
       wordPositions(pos) {
-        console.log(pos);
         this.wordPos = pos;
+        this.formattedText();
+      },
+      formattedText() {
+        const textArray = this.storedText.split('');
+        for (let i = 0; i < this.wordPos.length; i++) {
+          const index = this.wordPos[i];
+          if (textArray[index]) {
+            textArray[index] = `<b>${textArray[index]}`;
+            textArray[index + this.searchQuery.length - 1] = `${textArray[index + this.searchQuery.length - 1]}</b>`;
+          }
+        }
+        this.boldText = textArray.join('');
       }
     },
   };

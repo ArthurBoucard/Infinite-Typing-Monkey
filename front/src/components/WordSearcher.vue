@@ -25,6 +25,11 @@
         this.wordPositions();
       },
       wordPositions() {
+        if (this.searchQuery === '') {
+          this.wordPos = [];
+          this.$emit('word-pos', []);
+          return;
+        }
         const pos = [];
         let index = this.initialText.indexOf(this.searchQuery);
 
