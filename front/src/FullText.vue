@@ -67,11 +67,12 @@ import WordSearcher from './components/WordSearcher.vue';
       },
       formattedText() {
         const textArray = this.storedText.split('');
-        for (let i = 0; i < this.wordPos.length; i++) {
+        for (let i = 0, a = 1; i < this.wordPos.length; i++) {
           const index = this.wordPos[i];
           if (textArray[index]) {
-            textArray[index] = `<b>${textArray[index]}`;
-            textArray[index + this.searchQuery.length - 1] = `${textArray[index + this.searchQuery.length - 1]}</b>`;
+            textArray[index] = `<b><a id="word-${a}">${textArray[index]}`;
+            textArray[index + this.searchQuery.length - 1] = `${textArray[index + this.searchQuery.length - 1]}</a></b>`;
+            a++;
           }
         }
         this.boldText = textArray.join('');
