@@ -6,7 +6,12 @@
         <h1>Infinite Typing Monkey</h1>
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
         <div class="column-flex">
-          <WordSearcher />
+          <WordSearcher 
+            :initial-search-query="searchQuery" 
+            :initial-text="storedText"
+            @update:search-query="handleSearchQueryUpdate"
+            @word-pos="wordPositions"
+          />
           <div class="router">
             <h3><RouterLink to="/">⌨️ Go to live typing</RouterLink></h3>
           </div>
@@ -32,6 +37,8 @@ import WordSearcher from './components/WordSearcher.vue';
     data: () => ({
       input: "",
       storedText: "",
+      searchQuery: '',
+      wordPos: [],
     }),
     mounted() {
       let apiText = '';
@@ -50,6 +57,13 @@ import WordSearcher from './components/WordSearcher.vue';
       window.addEventListener('scroll', this.handleScroll);
     },
     methods: {
+      handleSearchQueryUpdate(newQuery) {
+        this.searchQuery = newQuery;
+      },
+      wordPositions(pos) {
+        console.log(pos);
+        this.wordPos = pos;
+      }
     },
   };
 </script>

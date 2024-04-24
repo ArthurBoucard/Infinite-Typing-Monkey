@@ -11,7 +11,7 @@
             <img  @click="startBottomScroll" src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
             <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
           </div>
-          <WordSearcher />
+          <!-- <WordSearcher /> -->
           <div class="router">
             <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
           </div>
@@ -32,13 +32,13 @@
 <script>
 import TextGenerator from './components/TextGenerator.vue';
 // import SimpleKeyboard from './components/Keyboard.vue';
-import WordSearcher from './components/WordSearcher.vue';
+// import WordSearcher from './components/WordSearcher.vue';
 
 export default {
   name: 'generatedText',
   components: {
     TextGenerator,
-    WordSearcher,
+    // WordSearcher,
     // SimpleKeyboard
   },
   data: () => ({

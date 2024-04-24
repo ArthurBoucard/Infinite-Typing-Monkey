@@ -1,13 +1,51 @@
 <template>
   <div class="search">
     <h3>🔍 Search for a word :</h3>
-    <input type="text" v-model="input" placeholder="Search for a word" />
+    <input type="text" v-model="searchQuery" @input="updateSearch" placeholder="Search for a word" />
+    <p>Total occurrences: <b>{{ wordPos.length == 100 ? "> 100" : wordPos.length == -1 ? 0 : wordPos.length }}</b></p>
   </div>
 </template>
   
 <script>
   export default {
     name: 'WordSearcher',
+    props: {
+      initialSearchQuery: String,
+      initialText: String
+    },
+    data() {
+      return {
+        searchQuery: this.initialSearchQuery,
+        wordPos: []
+      };
+    },
+    methods: {
+      updateSearch() {
+        this.$emit('update:search-query', this.searchQuery);
+        this.wordPositions();
+      },
+      wordPositions() {
+        const pos = [];
+        let index = this.initialText.indexOf(this.searchQuery);
+        pos.push(index);
+
+        while (index !== -1) {
+          pos.push(index);
+          index = this.initialText.indexOf(this.searchQuery, index + 1);
+
+          if (pos.length >= 100) {
+            index = -1;
+          }
+        }
+        console.log(pos);
+
+        this.wordPos = pos;
+        this.$emit('word-pos', pos);
+      }
+    },
+    mounted() {
+      this.wordPositions();
+    }
   };
 </script>
 
