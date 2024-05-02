@@ -90,7 +90,7 @@ import WordSearcher from './components/WordSearcher.vue';
         for (let i = 0, a = 1; i < this.wordPos.length; i++) {
           const index = this.wordPos[i];
           if (textArray[index]) {
-            textArray[index] = `<b><a id="word-${a}">${textArray[index]}`;
+            textArray[index] = `<b><a id="word-${a}" class="highlight-word">${textArray[index]}`;
             textArray[index + this.searchQuery.length - 1] = `${textArray[index + this.searchQuery.length - 1]}</a></b>`;
             a++;
           }
@@ -214,6 +214,10 @@ import WordSearcher from './components/WordSearcher.vue';
   
   .arrow:hover {
     cursor: pointer;
+  }
+
+  .highlight-word {
+    background-color: yellow;
   }
 
 </style>
