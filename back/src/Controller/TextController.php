@@ -82,7 +82,7 @@ class TextController extends AbstractController
 
         return $this->json([
             'total_length' => $totalLength,
-            'total_time_sec' => $total * 3, // rounded 2.55 to write 255 characters
+            'total_time_sec' => round($total * 2.55),
         ]);
     }
 }
