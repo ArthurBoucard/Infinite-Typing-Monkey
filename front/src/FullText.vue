@@ -4,7 +4,10 @@
       <img src="./assets/monkey.gif" alt="Monkey" class="gif-monkey" />
       <div  v-if="isModalVisible" class="modal-mask">
         <div class="modal">
-          <h3>🐒 Go to word</h3>
+          <div>
+            <h3>🐒 Go to word</h3>
+            <p class="modal-searchquery">{{ searchQuery }}</p>
+          </div>
           <div class="column-flex">
             <img src="./assets/arrow-up.svg" alt="arrow-up" class="arrow" @click="arrowUp" />
             <p>{{ wordNumber }}</p>
@@ -197,6 +200,10 @@ import WordSearcher from './components/WordSearcher.vue';
 
   .modal h3 {
     margin: 1vh;
+  }
+
+  .modal-searchquery {
+    text-align: center;
   }
 
   .arrow {
