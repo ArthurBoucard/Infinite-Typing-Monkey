@@ -30,8 +30,8 @@
           </div>
           <div class="statistics">
             <h3>📊 Statistics</h3>
-            <p>Total length: <b>{{ statTotalLength }}</b></p>
-            <p>Total time: <b>{{ statTotalTimeSec }}s</b></p>
+            <p>Total length: <b>{{ formatTotalLength(statTotalLength) }}</b></p>
+            <p>Total time: <b>{{ formatTotalTime(statTotalTimeSec) }}</b></p>
           </div>
         </div>
       </div>
@@ -113,6 +113,17 @@ import WordSearcher from './components/WordSearcher.vue';
           }
         }
         this.boldText = textArray.join('');
+      },
+      formatTotalLength(length) {
+        return length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      },
+      formatTotalTime(totalSeconds) {
+        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+        const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
       },
       arrowUp() {
         let word = document.getElementById('none');
