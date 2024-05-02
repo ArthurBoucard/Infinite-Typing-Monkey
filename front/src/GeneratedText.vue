@@ -7,7 +7,7 @@
         <p><a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">The Infinite Typing Monkey Theorem</a> states that a monkey hitting keys at random on a typewriter keyboard for an infinite amount of time will almost surely type a given text, such as the complete works of William Shakespeare.</p>
         <div class="column-flex">
           <div class="preview">
-            <h3 ref="liveTyping" @click="startBottomScroll">⌨️ Watch live typing :</h3>
+            <h3 ref="liveTyping" @click="startBottomScroll">⌨️ Live typing :</h3>
             <img  @click="startBottomScroll" src="./assets/typewriter.png" alt="typewriter" class="png-typewriter" />
             <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
           </div>
