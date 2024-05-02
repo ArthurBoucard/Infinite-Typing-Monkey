@@ -103,7 +103,10 @@ import WordSearcher from './components/WordSearcher.vue';
         if (this.wordNumber > 1) {
           this.wordNumber--;
           word = document.getElementById('word-' + this.wordNumber);
-          word.scrollIntoView({ behavior: 'smooth' });
+          const rect = word.getBoundingClientRect();
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const targetScrollTop = scrollTop + rect.top - (window.innerHeight / 2) + (rect.height / 2);
+          window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
         } else {
           this.wordNumber--;  
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -115,7 +118,7 @@ import WordSearcher from './components/WordSearcher.vue';
         if (this.wordNumber < this.wordPos.length) {
           this.wordNumber++;
           word = document.getElementById('word-' + this.wordNumber);
-          word.scrollIntoView({ behavior: 'smooth' });
+          word.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       },
     },
