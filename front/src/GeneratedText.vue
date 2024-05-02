@@ -15,6 +15,11 @@
           <div class="router">
             <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
           </div>
+          <div class="statistics">
+            <h3>📊 Live statistics</h3>
+            <p>Total characters: <b>{{ formatTotalLength(generatedText.length) }}</b></p>
+            <p>Time spent typing: <b>{{ formattedTime }}</b></p>
+          </div>
         </div>
       </div>
     </div>
@@ -47,10 +52,13 @@ export default {
     storedText: "",
     autoScrollInterval: null,
     lastScrollTop: 0,
-    scrollingDown: false
+    scrollingDown: false,
+    intervalId: null,
+    elapsedSeconds: 0,
   }),
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    this.startClock();
   },
   methods: {
     setText(text) {
@@ -76,7 +84,31 @@ export default {
     destroyed() {
       clearInterval(this.autoScrollInterval);
       window.removeEventListener('scroll', this.handleScroll);
-    }
+    },
+    formatTotalLength(length) {
+      return length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    },
+    startClock() {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+      }
+      this.intervalId = setInterval(() => {
+        this.elapsedSeconds++;
+      }, 1000);
+    },
+    formatTotalTime(totalSeconds) {
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    },
+  },
+  computed: {
+    formattedTime() {
+      return this.formatTotalTime(this.elapsedSeconds);
+    },
   },
 };
 </script>
@@ -132,6 +164,15 @@ export default {
 
   .router {
     margin-left: 5vh;
+  }
+
+  .statistics {
+    margin-left: 5vh;
+  }
+
+  .statistics p {
+    margin-left: 4vh;
+    font-size: 1.5vh;
   }
 
   .png-typewriter {
