@@ -12,13 +12,13 @@
             <TextGenerator  @click="startBottomScroll" class="TextGenerator" @textGenerated="setText"/>
           </div>
           <!-- <WordSearcher /> -->
-          <div class="router">
-            <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
-          </div>
           <div class="statistics">
             <h3>📊 Live statistics</h3>
             <p>Total characters: <b>{{ formatTotalLength(generatedText.length) }}</b></p>
             <p>Time spent typing: <b>{{ formattedTime }}</b></p>
+          </div>
+          <div class="router">
+            <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
           </div>
         </div>
       </div>
