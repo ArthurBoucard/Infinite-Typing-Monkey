@@ -30,8 +30,8 @@
           </div>
           <div class="statistics">
             <h3>📊 Statistics</h3>
-            <p>Total length: <b>{{ formatTotalLength(statTotalLength) }}</b></p>
-            <p>Total time: <b>{{ formatTotalTime(statTotalTimeSec) }}</b></p>
+            <p>Total characters: <b>{{ formatTotalLength(statTotalLength) }}</b></p>
+            <p>Time spent typing: <b>{{ formatTotalTime(statTotalTimeSec) }}</b></p>
           </div>
         </div>
       </div>
