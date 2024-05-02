@@ -25,13 +25,13 @@
             @update:search-query="handleSearchQueryUpdate"
             @word-pos="wordPositions"
           />
-          <div class="router">
-            <h3>⌨️ <RouterLink to="/">Go to live typing</RouterLink></h3>
-          </div>
           <div class="statistics">
             <h3>📊 Statistics</h3>
             <p>Total characters: <b>{{ formatTotalLength(statTotalLength) }}</b></p>
             <p>Time spent typing: <b>{{ formatTotalTime(statTotalTimeSec) }}</b></p>
+          </div>
+          <div class="router">
+            <h3>⌨️ <RouterLink to="/">Go to live typing</RouterLink></h3>
           </div>
         </div>
       </div>
