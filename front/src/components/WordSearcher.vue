@@ -64,5 +64,10 @@
   height: 2.2vh;
   font-size: 1.5vh;
 }
+
+.search p {
+  margin-left: 4vh;
+  font-size: 1.5vh;
+}
 </style>
   

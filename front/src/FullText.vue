@@ -26,7 +26,12 @@
             @word-pos="wordPositions"
           />
           <div class="router">
-            <h3><RouterLink to="/">⌨️ Go to live typing</RouterLink></h3>
+            <h3>⌨️ <RouterLink to="/">Go to live typing</RouterLink></h3>
+          </div>
+          <div class="statistics">
+            <h3>📊 Statistics</h3>
+            <p>Total length: <b>{{ statTotalLength }}</b></p>
+            <p>Total time: <b>{{ statTotalTimeSec }}s</b></p>
           </div>
         </div>
       </div>
@@ -55,6 +60,8 @@ import WordSearcher from './components/WordSearcher.vue';
       boldText: '',
       isModalVisible: false,
       wordNumber: 0,
+      statTotalLength: 0,
+      statTotalTimeSec: 0,
     }),
     mounted() {
       let apiText = '';
@@ -70,6 +77,16 @@ import WordSearcher from './components/WordSearcher.vue';
         .catch((error) => {
           console.error(error);
         });
+
+      axios.get('http://127.0.0.1:8000/stats/text')
+        .then((response) => {
+          this.statTotalLength = response.data.total_length;
+          this.statTotalTimeSec = response.data.total_time_sec;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
       window.addEventListener('scroll', this.handleScroll);
     },
     methods: {
@@ -166,6 +183,15 @@ import WordSearcher from './components/WordSearcher.vue';
 
   .router {
     margin-left: 5vh;
+  }
+
+  .statistics {
+    margin-left: 5vh;
+  }
+
+  .statistics p {
+    margin-left: 4vh;
+    font-size: 1.5vh;
   }
   
   .storedText {
