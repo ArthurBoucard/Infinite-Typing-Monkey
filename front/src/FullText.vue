@@ -44,7 +44,7 @@
 </template>
   
 <script>
-import WordSearcher from './components/WordSearcher.vue';
+  import WordSearcher from './components/WordSearcher.vue';
   import axios from 'axios';
   
   export default {
@@ -64,8 +64,10 @@ import WordSearcher from './components/WordSearcher.vue';
       statTotalTimeSec: 0,
     }),
     mounted() {
+      const apiUrl = process.env.VUE_APP_API_URL;
+      console.log('url = ', apiUrl);
       let apiText = '';
-      axios.get('http://127.0.0.1:8000/text')
+      axios.get(`${apiUrl}/text`)
         .then((response) => {
           response.data.forEach(element => {
             apiText += element.content
@@ -78,7 +80,7 @@ import WordSearcher from './components/WordSearcher.vue';
           console.error(error);
         });
 
-      axios.get('http://127.0.0.1:8000/stats/text')
+      axios.get(`${apiUrl}/stats/text`)
         .then((response) => {
           this.statTotalLength = response.data.total_length;
           this.statTotalTimeSec = response.data.total_time_sec;
