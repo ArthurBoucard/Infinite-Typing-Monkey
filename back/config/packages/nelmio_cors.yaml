@@ -1,11 +1,11 @@
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['*'] # You can specify specific domains here
+        allow_origin: ['https://infinite-typing-monkey.arthurboucard.com', 'http://localhost:4000']
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
         expose_headers: ['Link']
         max_age: 3600
     paths:
-        '^/': # Adjust this regex to match your API paths
-            allow_origin: ['https://infinite-typing-monkey.arthurboucard.com']
+        '^/':  # Adjust this regex to match your API paths
+            allow_origin: ['https://infinite-typing-monkey.arthurboucard.com', 'http://localhost:4000']
