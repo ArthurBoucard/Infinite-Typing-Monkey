@@ -33,7 +33,7 @@
         this.generatedTextPreview = this.generatedText.slice(-10);
 
         if (this.generatedText.length % 255 === 0) {
-          axios.post(`${apiUrl}/stats/text`, {
+          axios.post(`${apiUrl}/text`, {
             content: this.generatedText.slice(-255)
           })
             .then((response) => {
