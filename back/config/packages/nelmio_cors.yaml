@@ -1,10 +1,11 @@
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%'] # TODO : protect to only the website url -> allow_origin: ['https://your-website-domain.com']
+        allow_origin: ['*'] # You can specify specific domains here
         allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
         allow_headers: ['Content-Type', 'Authorization']
         expose_headers: ['Link']
         max_age: 3600
     paths:
-        '^/': null
+        '^/': # Adjust this regex to match your API paths
+            allow_origin: ['https://infinite-typing-monkey.arthurboucard.com']
