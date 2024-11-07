@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3>Active Users: {{ activeUsers }}</h3>
+      <h3>🐒 Active Monkeys: {{ activeUsers }}</h3>
     </div>
   </template>
   
