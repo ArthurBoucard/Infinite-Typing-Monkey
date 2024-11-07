@@ -17,6 +17,7 @@
             <p>Total characters: <b>{{ formatTotalLength(generatedText.length) }}</b></p>
             <p>Time spent typing: <b>{{ formattedTime }}</b></p>
           </div>
+          <activeUsers />
           <div class="router">
             <h3>
               <a href="/fulltext" target="_blank" rel="noopener noreferrer">
@@ -36,11 +37,13 @@
 
 <script>
 import TextGenerator from './components/TextGenerator.vue';
+import activeUsers from './components/LiveUserTracker.vue';
 
 export default {
   name: 'generatedText',
   components: {
     TextGenerator,
+    activeUsers,
   },
   data: () => ({
     input: "",
