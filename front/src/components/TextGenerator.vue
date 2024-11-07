@@ -20,9 +20,13 @@
     mounted() {
       this.generateText();
       this.interval = setInterval(this.generateText, 10);
+
+      // Listen for visibility change to optimize when the tab is inactive
+      document.addEventListener('visibilitychange', this.handleVisibilityChange);
     },
     beforeUnmount() {
       clearInterval(this.interval);
+      document.removeEventListener('visibilitychange', this.handleVisibilityChange);
     },
     methods: {
       generateText() {
@@ -43,7 +47,19 @@
               console.error(error);
             });
         }
-      }
+      },
+      startTextGeneration() {
+        this.interval = setInterval(this.generateText, 10);
+      },
+      handleVisibilityChange() {
+        if (document.hidden) {
+          clearInterval(this.interval);
+          this.interval = setInterval(this.generateText, 100);
+        } else {
+          clearInterval(this.interval);
+          this.interval = setInterval(this.generateText, 10);
+        }
+      },
     }
   };
   
