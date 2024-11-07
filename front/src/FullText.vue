@@ -136,7 +136,7 @@
           const scrollTop = window.scrollY || document.documentElement.scrollTop;
           const targetScrollTop = scrollTop + rect.top - (window.innerHeight / 2) + (rect.height / 2);
           window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
-        } else {
+        } else if (this.wordNumber === 1) {
           this.wordNumber--;  
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }

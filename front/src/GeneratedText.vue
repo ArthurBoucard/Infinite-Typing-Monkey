@@ -18,16 +18,16 @@
             <p>Time spent typing: <b>{{ formattedTime }}</b></p>
           </div>
           <div class="router">
-            <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
+            <h3>
+              <a href="/fulltext" target="_blank" rel="noopener noreferrer">
+                📄 Go to already typed text
+              </a>
+            </h3>
           </div>
         </div>
       </div>
     </div>
     <div class="divider"></div>
-    <!-- <SimpleKeyboard
-      @onChange="onChange"
-      :input="generatedText"
-    /> -->
     <div class="generatedText">
       <p>...{{ generatedText }}</p>
     </div>
@@ -36,15 +36,11 @@
 
 <script>
 import TextGenerator from './components/TextGenerator.vue';
-// import SimpleKeyboard from './components/Keyboard.vue';
-// import WordSearcher from './components/WordSearcher.vue';
 
 export default {
   name: 'generatedText',
   components: {
     TextGenerator,
-    // WordSearcher,
-    // SimpleKeyboard
   },
   data: () => ({
     input: "",
