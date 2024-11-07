@@ -23,6 +23,8 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Create a .env.local like .env
+
 ### Start on server
 ```
 nohup serve -s dist -l 4000 > output.log 2>&1 &

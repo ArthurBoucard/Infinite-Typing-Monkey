@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 
 const wss = new WebSocket.Server({ port: process.env.VUE_APP_WS_PORT });
 
