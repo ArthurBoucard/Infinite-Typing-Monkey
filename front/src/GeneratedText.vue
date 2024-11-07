@@ -21,11 +21,7 @@
             <activeUsers />
           </div>
           <div class="router">
-            <h3>
-              <a href="/fulltext" target="_blank" rel="noopener noreferrer">
-                📄 Go to already typed text
-              </a>
-            </h3>
+            <h3><RouterLink to="/fulltext">📄 Go to already typed text</RouterLink></h3>
           </div>
         </div>
       </div>
