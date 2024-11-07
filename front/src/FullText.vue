@@ -65,6 +65,7 @@
     }),
     mounted() {
       const apiUrl = process.env.VUE_APP_API_URL;
+      console.log("API ", apiUrl);
       let apiText = '';
       axios.get(`${apiUrl}/text`)
         .then((response) => {
